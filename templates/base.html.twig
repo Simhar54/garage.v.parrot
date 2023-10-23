@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Garage V.Parrot
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{asset('assets/CSS/bootstrap.min.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/CSS/mainStyle.css')}}">
+		{% endblock %}
+	</head>
+	<body>
+		<div class="container-fluid d-flex flex-column min-vh-100">
+			<div class="row">
+				{% include "_includes/_navbar.html.twig" %}
+			</div>
+			<div class="row"> {% block body %}{% endblock %}
+				</div>
+				<div
+					class="row mt-auto">
+					<!-- Notez l'ajout de mt-auto ici -->
+					{% include "_includes/_footer.html.twig" %}
+				</div>
+			</div>
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+			{% block javascripts %}
+				<script src="{{asset('assets/JS/bootstrap.bundle.min.js')}}"></script>
+				<script src="{{asset('assets/JS/mainScript.js')}}"></script>
+			{% endblock %}
+		</body>
+	</html>
