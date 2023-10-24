@@ -32,15 +32,27 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('firstname')
-                ->setLabel('Prénom'),
+                ->setLabel('Prénom')
+                ->setFormTypeOptions([
+                    'attr' => ['placeholder' => 'Doit contenir au moins 2 caractères']
+                ]),
             TextField::new('lastname')
-                ->setLabel('Nom de famille'),
+                ->setLabel('Nom de famille')
+                ->setFormTypeOptions([
+                    'attr' => ['placeholder' => 'Doit contenir au moins 2 caractères']
+                ]),
             TextField::new('email')
-                ->setLabel('Adresse e-mail'),
+                ->setLabel('Adresse e-mail')
+                ->setFormTypeOptions([
+                    'attr' => ['placeholder' => 'Mettre une adresse e-mail valide']
+                ]),
             TextField::new('password')
                 ->setLabel('Mot de passe')
                 ->onlyOnForms()
-                ->setFormType(PasswordType::class),
+                ->setFormType(PasswordType::class)
+                ->setFormTypeOptions([
+                    'attr' => ['placeholder' => 'Doit contenir au moins 12 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial']
+                ]),
             ArrayField::new('roles')
                 ->setLabel('Rôles')
                 ->hideOnForm(),

@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -18,6 +18,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une adresse e-mail')]
+    #[Assert\Email(message: 'Veuillez renseigner une adresse e-mail valide')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -27,15 +29,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner un mot de passe')]
+    #[Assert\Length(min: 12, max: 100, minMessage: 'Le mot de passe doit contenir au moins {{ limit }} caractères', maxMessage: 'Le mot de passe doit contenir au maximum {{ limit }} caractères')]
+    #[Assert\Regex(pattern: "/[a-z]/", message: 'Le mot de passe doit contenir au moins une minuscule')]
+    #[Assert\Regex(pattern: "/[A-Z]/", message: 'Le mot de passe doit contenir au moins une majuscule')]
+    #[Assert\Regex(pattern: "/[0-9]/", message: 'Le mot de passe doit contenir au moins un chiffre')]
+    #[Assert\Regex(pattern: "/[!@#$%^&*()\-_=+{};:,<.>]/", message: 'Le mot de passe doit contenir au moins un caractère spécial')]
     private ?string $password = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Garage $garage_id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner un nom de famille')]
+    #[Assert\Length(min: 2, max: 100, minMessage: 'Le nom de famille doit contenir au moins {{ limit }} caractères', maxMessage: 'Le nom de famille doit contenir au maximum {{ limit }} caractères')]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner un prénom')]
+    #[Assert\Length(min: 2, max: 100, minMessage: 'Le prénom doit contenir au moins {{ limit }} caractères', maxMessage: 'Le prénom doit contenir au maximum {{ limit }} caractères')]
     private ?string $firstname = null;
 
     #[ORM\Column]
