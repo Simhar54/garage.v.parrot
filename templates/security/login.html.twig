@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/loginStyle.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="banniere text-center d-flex align-items-center justify-content-center">
+    <div>
+        <h1>Garage V Parrot</h1>
+	    <p>Mécanique de précision , service de passion</p>
+    </div>	
+</div>
+<section class="container my-3">
+    <div class="row">
+        <div class="d-flex justify-content-around">
+            <form method="post" class="col col-10">
+                {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                <div class="mb-3">
+                    Vous êtes connecté(e) comme  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="gp_link">Me déconnecter</a>
+                </div>
+                {% endif %}
+
+                <h3 class="text-center mt-4">Connexion</h3>
+                <div class="row d-flex justify-content-center mt-4">
+                    <div class="col col-12 col-lg-4">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mt-1" autocomplete="email" required autofocus>
+                    </div>
+                    <div class="col col-12 col-lg-4">
+                        <label for="inputPassword">Mot de passe</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control mt-1" autocomplete="current-password" required>
+                    </div>
+               </div>
+                
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="text-center mt-4">
+                    <button class="btn gp_button" type="submit">
+                    Me connecter
+                    </button>
+                </div>
+                
+
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

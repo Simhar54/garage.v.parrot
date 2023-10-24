@@ -28,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?garage $garage_id = null;
+    private ?Garage $garage_id = null;
 
     #[ORM\Column(length: 100)]
     private ?string $lastname = null;

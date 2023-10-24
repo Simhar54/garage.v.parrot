@@ -1,8 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Garage V Parrot{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/CSS/accueilStyle.css') }}">
+{% endblock %}
 
 {% block body %}
-<h1>On demmarre</h1>
+<div class="banniere text-center d-flex align-items-center justify-content-center">
+    <div>
+        <h1>Garage V Parrot</h1>
+	    <p>Mécanique de précision , service de passion</p>
+    </div>	
 </div>
+
 {% endblock %}

@@ -17,18 +17,17 @@
 			<div class="row">
 				{% include "_includes/_navbar.html.twig" %}
 			</div>
-			<div class="row"> {% block body %}{% endblock %}
-				</div>
-				<div
-					class="row mt-auto">
-					<!-- Notez l'ajout de mt-auto ici -->
-					{% include "_includes/_footer.html.twig" %}
-				</div>
+			<div class="row">
+				 {% block body %}{% endblock %}
 			</div>
+			<div class="row mt-auto">
+				{% include "_includes/_footer.html.twig" %}
+			</div>
+		</div>
 
-			{% block javascripts %}
-				<script src="{{asset('assets/JS/bootstrap.bundle.min.js')}}"></script>
-				<script src="{{asset('assets/JS/mainScript.js')}}"></script>
-			{% endblock %}
-		</body>
-	</html>
+		{% block javascripts %}
+			<script src="{{asset('assets/JS/bootstrap.bundle.min.js')}}"></script>
+			<script src="{{asset('assets/JS/mainScript.js')}}"></script>
+		{% endblock %}
+	</body>
+</html>

@@ -1,4 +1,4 @@
-<div class="container footer">
+<div class="container footer mt-4">
 	<footer class="d-flex justify-content-around py-4">
 		<div class="col col-3 text-center">
 			<p>Nos horaires d'ouvertures:</p>
@@ -14,15 +14,18 @@
 		</div>
 		<div class="col col-3 text-center">
 			<p>Garage.V.Parrot</p>
-      Adresse : 123 Rue Imaginaire</br>
-      99999 Nullepart, France</br>
-      Téléphone : 01 23 45 67 89
-    </div>
-    <div class="col col-3 text-center">
-    <p>Nous <a href="#">contacter</a></p>
-    <p>Nos <a href="#">CGU</a></p>
-    <p>Se <a href="#">connecter</a></p>
-    
-    </div>
-  </footer>
+			Adresse : 123 Rue Imaginaire</br>
+			99999 Nullepart, France</br>
+			Téléphone : 01 23 45 67 89
+		</div>
+    	<div class="col col-3 text-center">
+    		<p>Nous <a href="#" class="gp_link">contacter</a></p>
+    		<p>Nos <a href="#" class="gp_link">CGU</a></p>
+			{% if app.user %}
+				<p>Se <a href="{{path('app_logout')}}" class="gp_link">deconnecter</a></p>
+			{% else %}
+				<p>Se <a href="{{path('app_login')}}" class="gp_link">connecter</a></p>
+			{% endif %}
+    	</div>
+    </footer>
 </div>

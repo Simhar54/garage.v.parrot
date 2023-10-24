@@ -9,13 +9,32 @@ body {
     background-color: #f5f5f5;
 }
 
+h1 h2 h3 h4 h5 h6 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.gp_link {
+    color: #8B0000;
+    text-decoration: none;
+}
+
+.gp_button {
+    background-color: #0048BA;
+    border-radius: 5px;
+    border: none;
+    color: #f5f5f5;
+    padding: 10px 20px;
+}
+
 
 /***** Header *****/
 
 .navbar {
-    background-color: #2E2E2E;
+    background-color: #1e1e1e;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+    margin-bottom: 0;
 }
 
 .gp_nav_logo {
@@ -28,16 +47,11 @@ body {
 /***** Footer *****/
 
 .footer {
-    background-color: #2E2E2E;
+    background-color: #1e1e1e;
     font-size: 16px;
     color: #f5f5f5;
 }
 
 .footer li {
     list-style-type: none;
-}
-
-.footer a {
-    color: #8B0000;
-    text-decoration: none;
 }
