@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Car;
+use App\Entity\CarImage;
 use App\Entity\User;
 use App\Entity\Option;
 use App\Entity\Equipment;
@@ -38,10 +39,11 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         #Menu Employé
-        yield MenuItem::subMenu('Employés', 'fa fa-user')->setSubItems([
+        yield MenuItem::subMenu('Gestion Parc Voiture', 'fa fa-car')->setSubItems([
+            MenuItem::linkToCrud('Voitures', 'fa fa-car', Car::class),
             MenuItem::linkToCrud('Options', 'fa fa-cogs', Option::class),
             MenuItem::linkToCrud('Equipements', 'fa fa-parking', Equipment::class),
-            MenuItem::linkToCrud('Voitures', 'fa fa-car', Car::class),
+            MenuItem::linkToCrud('Images', 'fa fa-image', CarImage::class),
             
         ]) ;
 

@@ -84,7 +84,7 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('un utilisateur')
+            ->setEntityLabelInSingular('Utilisateur')
             ->setPageTitle('index', 'Utilisateurs')
             ->setPaginatorPageSize(10);
     }

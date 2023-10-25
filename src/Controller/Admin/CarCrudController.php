@@ -103,4 +103,12 @@ class CarCrudController extends AbstractCrudController
         return $car;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Voiture')
+            ->setPageTitle('index', 'Voitures')
+            ->setPaginatorPageSize(10);
+    }
+
 }
