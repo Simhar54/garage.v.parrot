@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EquipmentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EquipmentRepository::class)]
 class Equipment
@@ -14,6 +15,8 @@ class Equipment
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 100, minMessage: 'Le nom de l\'équipement doit contenir au moins {{ limit }} caractères', maxMessage: 'Le nom de l\'équipement doit contenir au maximum {{ limit }} caractères')]
     private ?string $name = null;
 
     public function getId(): ?int
