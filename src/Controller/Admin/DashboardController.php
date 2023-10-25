@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Option;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -33,6 +34,12 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
             
         ]);
+
+        #Menu Employé
+        yield MenuItem::subMenu('Employé', 'fa fa-user')->setSubItems([
+            MenuItem::linkToCrud('Options', 'fa fa-cogs', Option::class),
+            
+        ]) ;
 
         #return Accueil
         yield MenuItem::linkToRoute('Accueil', 'fa fa-home', 'app_main');
