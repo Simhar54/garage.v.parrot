@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -38,7 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?Garage $garage_id = null;
+    private ?Garage $garage = null;
 
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un nom de famille')]
@@ -55,6 +57,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $first_time_login = null;
+
+    #[ORM\OneToMany(mappedBy: 'employee_id', targetEntity: Car::class)]
+    private Collection $cars;
+
+    public function __construct()
+    {
+        $this->cars = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -129,12 +139,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getGarageId(): ?garage
     {
-        return $this->garage_id;
+        return $this->garage;
     }
 
-    public function setGarageId(?garage $garage_id): static
+    public function setGarageId(?garage $garage): static
     {
-        $this->garage_id = $garage_id;
+        $this->garage = $garage;
 
         return $this;
     }
@@ -204,6 +214,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
              $this->first_time_login = true;
         }
 
+    }
+
+    /**
+     * @return Collection<int, Car>
+     */
+    public function getCars(): Collection
+    {
+        return $this->cars;
+    }
+
+    public function addCar(Car $car): static
+    {
+        if (!$this->cars->contains($car)) {
+            $this->cars->add($car);
+            $car->setEmployeeId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCar(Car $car): static
+    {
+        if ($this->cars->removeElement($car)) {
+            // set the owning side to null (unless already changed)
+            if ($car->getEmployeeId() === $this) {
+                $car->setEmployeeId(null);
+            }
+        }
+
+        return $this;
     }
 
 }
