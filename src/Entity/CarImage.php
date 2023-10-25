@@ -25,12 +25,12 @@ class CarImage
         return $this->id;
     }
 
-    public function getCarId(): ?Car
+    public function getCar(): ?Car
     {
         return $this->car;
     }
 
-    public function setCarId(?Car $car): static
+    public function setCar(?Car $car): static
     {
         $this->car = $car;
 

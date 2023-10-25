@@ -228,7 +228,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->cars->contains($car)) {
             $this->cars->add($car);
-            $car->setEmployeeId($this);
+            $car->setEmployee($this);
         }
 
         return $this;
@@ -238,12 +238,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->cars->removeElement($car)) {
             // set the owning side to null (unless already changed)
-            if ($car->getEmployeeId() === $this) {
-                $car->setEmployeeId(null);
+            if ($car->getEmployee() === $this) {
+                $car->setEmployee(null);
             }
         }
 
         return $this;
+    }
+
+    // Return Lastname when calling User object
+    public function __toString(): string
+    {
+        return $this->getLastName();
     }
 
 }

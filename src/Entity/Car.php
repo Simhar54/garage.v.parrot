@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
 class Car
 {
     #[ORM\Id]
@@ -46,7 +47,7 @@ class Car
     #[ORM\ManyToMany(targetEntity: Equipment::class)]
     private Collection $equipments;
 
-    #[ORM\OneToMany(mappedBy: 'car_id', targetEntity: CarImage::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: CarImage::class, orphanRemoval: true)]
     private Collection $carImages;
 
     public function __construct()
@@ -61,14 +62,14 @@ class Car
         return $this->id;
     }
 
-    public function getEmployeeId(): ?User
+    public function getEmployee(): ?User
     {
         return $this->employee;
     }
 
-    public function setEmployeeId(?User $employee_id): static
+    public function setEmployee(?User $employee): static
     {
-        $this->employee = $employee_id;
+        $this->employee = $employee;
 
         return $this;
     }
@@ -208,30 +209,48 @@ class Car
     /**
      * @return Collection<int, CarImage>
      */
-    public function getImagePath(): Collection
+    public function getCarImage(): Collection
     {
         return $this->carImages;
     }
 
-    public function addImagePath(CarImage $carImages): static
+    public function addCarImage(CarImage $carImages): static
     {
         if (!$this->carImages->contains($carImages)) {
             $this->carImages->add($carImages);
-            $carImages->setCarId($this);
+            $carImages->setCar($this);
         }
 
         return $this;
     }
 
-    public function removeImagePath(CarImage $carImages): static
+    public function removeCarImage(CarImage $carImages): static
     {
         if ($this->carImages->removeElement($carImages)) {
             // set the owning side to null (unless already changed)
-            if ($carImages->getCarId() === $this) {
-                $carImages->setCarId(null);
+            if ($carImages->getCar() === $this) {
+                $carImages->setCar(null);
             }
         }
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        if ($this->created_at === null) {
+             $this->created_at = new \DateTimeImmutable();
+        }
+
+    }
+
+    #[ORM\PrePersist]
+    public function setUpdatedAtValue(): void
+    {
+        if ($this->updated_at === null) {
+             $this->updated_at = new \DateTimeImmutable();
+        }
+
     }
 }

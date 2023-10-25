@@ -35,4 +35,10 @@ class Equipment
 
         return $this;
     }
+
+    // Return Name when calling User object
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
 }
