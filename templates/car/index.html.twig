@@ -1,35 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos vehicules{% endblock %}
+{% block title %}Nos vehicules
+{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('assets/CSS/carStyle.css') }}">
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/CSS/carStyle.css') }}">
 {% endblock %}
 
 {% block body %}
-    <div class="banniere text-center d-flex align-items-center justify-content-center">
-        <div>
-            <h1>Garage V Parrot</h1>
-            <p>Mécanique de précision , service de passion</p>
-        </div>	
-    </div>
+	<div class="banniere text-center d-flex align-items-center justify-content-center">
+		<div>
+			<h1>Garage V Parrot</h1>
+			<p>Mécanique de précision , service de passion</p>
+		</div>
+	</div>
 
-  
-    <div id="alertContainer"></div>
 
-    <h3 class="text-center mt-5">Votre prochaine voiture vous attends ici!</h3>
+	<div id="alertContainer"></div>
 
-    <section>
-        <div class="gp_filtre_container">
-        </div>
-    </section>
-    <section>
+	<h3 class="text-center mt-5">Votre prochaine voiture vous attends ici!</h3>
 
-    <ul id="carCardContainer" class="row  d-flex justify-content-around" >
-    </ul>
-    
-    </section>
+	<section>
+		<div class="gp_filtre_container m-4">
 
-     <script src="{{ asset('assets/JS/carScript.js') }}"></script>
+			<form class="m-3">
+				<div class="mb-3">
+                    <h5 class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter me-2" viewBox="0 0 16 16">
+  					<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+					</svg>Filtre de recherche</h5>
+					<div class="row mt-4 d-flex justify-content-around">
+						<span class="col col-10 col-l-8 col-lg-3 d-flex justify-content-center mt-2">
+							Par années: 
+							<input type="text" class="form-control gp_filter_input mx-2" id="yearMin"> - 
+							<input type="text" class="form-control gp_filter_input mx-2" id="yearMax">
+						</span>
+						<span class="col col-10 col-md-8 col-lg-3 d-flex justify-content-center mt-2">
+							Par Km:
+							<input type="text" class="form-control gp_filter_input mx-2" id="kmMin"> - 
+							<input type="text" class="form-control gp_filter_input mx-2" id="kmMax">
+						</span>
+						<span class="col col-3 d-flex justify-content-center mt-2">
+							Par prix:
+							<input type="text" class="form-control gp_filter_input mx-2" id="priceMin"> - 
+							<input type="text" class="form-control gp_filter_input mx-2" id="priceMax">
+						</span>	
+						
+					</div>
+					<div class="mt-4 text-center">
+						<button type="submit" class="btn gp_button">Filtrer</button>
+					</div>
+				
+			</form>
+
+
+		</div>
+	</section>
+	<section>
+
+		<ul id="carCardContainer" class="row  d-flex justify-content-around"></ul>
+
+	</section>
+
+	<script src="{{ asset('assets/JS/carScript.js') }}"></script>
 {% endblock %}

@@ -1,9 +1,25 @@
 .banniere {
-    background-image: url(../../image/banniere/banniereCar.jpeg);
-    background-size: 100%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: calc(100vw / 4);
-    max-height: 282px;
-    color: #f5f5f5;
-  }
+  background-image: url(../../image/banniere/banniereCar.jpeg);
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: calc(100vw / 4);
+  max-height: 282px;
+  color: #f5f5f5;
+}
+
+.gp_filtre_container {
+  border-radius: 10px;
+  border: 1px solid #1e1e1e;
+  background: #f5f5f5;
+  min-width: 300px;
+}
+
+.gp_filter_input {
+  width: 100px;
+  height: 30px;
+}
+
+.cardCar {
+  min-width: 300px;
+}
