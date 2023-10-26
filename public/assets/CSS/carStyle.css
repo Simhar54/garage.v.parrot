@@ -1,0 +1,9 @@
+.banniere {
+    background-image: url(../../image/banniere/banniereCar.jpeg);
+    background-size: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: calc(100vw / 4);
+    max-height: 282px;
+    color: #f5f5f5;
+  }

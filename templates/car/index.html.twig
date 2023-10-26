@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos vehicules{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/CSS/carStyle.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="banniere text-center d-flex align-items-center justify-content-center">
+        <div>
+            <h1>Garage V Parrot</h1>
+            <p>Mécanique de précision , service de passion</p>
+        </div>	
+    </div>
+
+  
+    <div id="alertContainer"></div>
+
+    <h3 class="text-center mt-5">Votre prochaine voiture vous attends ici!</h3>
+
+    <section>
+        <div class="gp_filtre_container">
+        </div>
+    </section>
+    <section>
+
+    <ul id="carCardContainer" class="row  d-flex justify-content-around" >
+    </ul>
+    
+    </section>
+
+     <script src="{{ asset('assets/JS/carScript.js') }}"></script>
+{% endblock %}
