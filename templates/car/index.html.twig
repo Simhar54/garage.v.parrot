@@ -18,49 +18,108 @@
 
 
 	<div id="alertContainer"></div>
-
 	<h3 class="text-center mt-5">Votre prochaine voiture vous attends ici!</h3>
-
 	<section>
-		<div class="gp_filtre_container m-4">
+	<div class="gp_filtre_container m-4">
 
-			<form class="m-3">
-				<div class="mb-3">
-                    <h5 class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter me-2" viewBox="0 0 16 16">
-  					<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+		<form method="POST" class="needs-validation m-3" novalidate>
+			<div class="mb-3">
+				<h5 class="text-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter me-2" viewbox="0 0 16 16">
+						<path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
 					</svg>Filtre de recherche</h5>
-					<div class="row mt-4 d-flex justify-content-around">
-						<span class="col col-10 col-l-8 col-lg-3 d-flex justify-content-center mt-2">
-							Par années: 
-							<input type="text" class="form-control gp_filter_input mx-2" id="yearMin"> - 
-							<input type="text" class="form-control gp_filter_input mx-2" id="yearMax">
-						</span>
-						<span class="col col-10 col-md-8 col-lg-3 d-flex justify-content-center mt-2">
-							Par Km:
-							<input type="text" class="form-control gp_filter_input mx-2" id="kmMin"> - 
-							<input type="text" class="form-control gp_filter_input mx-2" id="kmMax">
-						</span>
-						<span class="col col-3 d-flex justify-content-center mt-2">
-							Par prix:
-							<input type="text" class="form-control gp_filter_input mx-2" id="priceMin"> - 
-							<input type="text" class="form-control gp_filter_input mx-2" id="priceMax">
-						</span>	
-						
+
+
+				<div class="row mt-4 d-flex justify-content-around">
+					<div class="col col-10 col-md-8 col-lg-4 d-flex justify-content-center mt-2">
+						<div class="row mx-2">
+							<div>Par année:</div>
+							<div>
+								<div class="d-flex align-items-top">
+									<div class="me-2">
+										<input type="text" class="form-control gp_filter_input" id="yearMin" name="yearMin" required oninput="validateFields(this)" placeholder="Min">
+										<div class="invalid-feedback gp_invalid_feedback">
+											Veuillez entrer une année valide.
+										</div>
+									</div>
+									<div>-</div>
+									<div class="mx-2">
+										<input type="text" class="form-control gp_filter_input" id="yearMax" name="yearMax" required oninput="validateFields(this)" placeholder="Max">
+										<div class="invalid-feedback gp_invalid_feedback">
+											Veuillez entrer une année valide.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="mt-4 text-center">
-						<button type="submit" class="btn gp_button">Filtrer</button>
+
+
+					<div class="col col-10 col-md-8 col-lg-4 d-flex justify-content-center mt-2">
+						<div class="row mx-2">
+							<div>Kilométrage:</div>
+							<div>
+								<div class="d-flex align-items-top">
+									<div class="me-2">
+										<input type="text" class="form-control gp_filter_input" id="kmMin" name="kmMin" required oninput="validateFields(this)" placeholder="Min">
+										<div class="invalid-feedback gp_invalid_feedback">
+											Veuillez entrer un kilométrage valide.
+										</div>
+									</div>
+									<div>-</div>
+									<div class="mx-2">
+										<input type="text" class="form-control gp_filter_input" id="kmMax" name="kmMax" required oninput="validateFields(this)" placeholder="Max">
+										<div class="invalid-feedback gp_invalid_feedback">
+											Veuillez entrer un kilométrage valide.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				
+
+					<div class="col col-10 col-md-8 col-lg-4 d-flex justify-content-center mt-2">
+						<div class="row mx-2">
+							<div>Prix:</div>
+							<div>
+								<div class="d-flex align-items-top">
+									<div class="me-2">
+										<input type="text" class="form-control gp_filter_input" id="priceMin" name="priceMin" required oninput="validateFields(this)" placeholder="Min">
+										<div class="invalid-feedback gp_invalid_feedback">
+											Veuillez entrer un prix valide.
+										</div>
+									</div>
+									<div>-</div>
+									<div class="mx-2">
+										<input type="text" class="form-control gp_filter_input" id="priceMax" name="priceMax" required oninput="validateFields(this)" placeholder="Max">
+										<div class="invalid-feedback gp_invalid_feedback">
+											Veuillez entrer un prix valide.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="mt-4 text-center">
+					<button type="submit" class="btn gp_button">Filtrer</button>
+				</div>
+
 			</form>
 
 
 		</div>
 	</section>
-	<section>
 
-		<ul id="carCardContainer" class="row  d-flex justify-content-around"></ul>
 
-	</section>
+		<section>
 
-	<script src="{{ asset('assets/JS/carScript.js') }}"></script>
-{% endblock %}
+			<ul id="carCardContainer" class="row  d-flex justify-content-around"></ul>
+
+		</section>
+
+		<script src="{{ asset('assets/JS/carScript.js') }}"></script>
+		<script src="{{ asset('assets/JS/validateForm.js') }}"></script>
+	{% endblock %}

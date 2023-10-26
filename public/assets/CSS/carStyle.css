@@ -20,6 +20,10 @@
   height: 30px;
 }
 
+.gp_invalid_feedback {
+  max-width: 100px;
+}
+
 .cardCar {
   min-width: 300px;
 }
