@@ -6,6 +6,7 @@ use App\Entity\CarImage;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class CarImageCrudController extends AbstractCrudController
 {
@@ -20,6 +21,8 @@ class CarImageCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->hideOnForm(),
+            TextField::new('image_path')
+                ->onlyOnIndex(),
         ];
     }
 
@@ -27,8 +30,8 @@ class CarImageCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Option')
-            ->setPageTitle('index', 'Options')
+            ->setEntityLabelInSingular('Image')
+            ->setPageTitle('index', 'Images')
             ->setPaginatorPageSize(10);
     }
 }

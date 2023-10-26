@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Car;
 use App\Entity\User;
+use App\Form\Type\CarImageType;
 use Symfony\Bundle\SecurityBundle\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -12,9 +13,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use Symfony\Component\Validator\Constraints\Collection;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 
 class CarCrudController extends AbstractCrudController
 {
@@ -90,6 +92,8 @@ class CarCrudController extends AbstractCrudController
             CollectionField::new('equipments')
                 ->setLabel('Equipements')
                 ->onlyOnDetail(),
+                CollectionField::new('carImages')
+                ->setEntryType(CarImageType::class),
             
         ];
     }
