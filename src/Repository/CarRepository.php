@@ -21,6 +21,48 @@ class CarRepository extends ServiceEntityRepository
         parent::__construct($registry, Car::class);
     }
 
+
+    public function findByFilter($minPrice = null, $maxPrice = null, $kmMin = null, $kmMax = null  ,$minYear = null , $maxYear = null  ): array
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        if ($minPrice !== null && $minPrice !== '') {
+            $qb->andWhere('p.price >= :minPrice')
+               ->setParameter('minPrice', $minPrice);
+        }
+        
+        if ($maxPrice !== null && $maxPrice !== '') {
+            $qb->andWhere('p.price <= :maxPrice')
+               ->setParameter('maxPrice', $maxPrice);
+        }
+        
+        if ($kmMin !== null && $kmMin !== '') {
+           $qb->andWhere('p.mileage >= :kmMin')
+              ->setParameter('kmMin', $kmMin);
+        }
+        
+ 
+        if ($kmMax !== null && $kmMax !== '') {
+           $qb->andWhere('p.mileage <= :kmMax')
+        ->setParameter('kmMax', $kmMax);
+        }
+
+        if ($minYear !== null && $minYear !== '') {
+           $qb->andWhere('p.year >= :minYear')
+           ->setParameter('minYear', $minYear);
+        }
+
+        if ($maxYear !== null && $maxYear !== '') {
+           $qb->andWhere('p.year <= :maxYear')
+           ->setParameter('maxYear', $maxYear);
+        }
+             
+
+        return $qb->getQuery()->getResult();
+        
+    }
+
+
 //    /**
 //     * @return Car[] Returns an array of Car objects
 //     */

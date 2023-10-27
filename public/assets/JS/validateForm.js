@@ -100,17 +100,38 @@ function validateFields(input) {
 (function () {
   "use strict";
 
-  // Get all forms with class "needs-validation"
   const forms = document.querySelectorAll(".needs-validation");
 
-  // Loop through all forms
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    // Add event listener for form submission
+  // Function to check if all inputs are empty
+  function checkAllEmpty(form) {
+    const inputs = form.querySelectorAll("input");
+    let allEmpty = true;
+    inputs.forEach((input) => {
+      if (input.value.trim() !== "") {
+        allEmpty = false;
+      }
+    });
+    return allEmpty;
+  }
+
+  forms.forEach(function (form) {
+    // Get all input elements within the form
+    const inputs = form.querySelectorAll("input");
+
+    // Add input event listener to each input
+    inputs.forEach((input) => {
+      input.addEventListener("input", function() {
+        if (checkAllEmpty(form)) {
+          document.getElementById("btnSubmit").disabled = true;
+        } else {
+          document.getElementById("btnSubmit").disabled = false;
+        }
+      });
+    });
+
     form.addEventListener(
       "submit",
       function (event) {
-        // Get all input elements within the form
-        let inputs = form.querySelectorAll("input");
         let isFormValid = true;
 
         // Loop through all form elements to validate them
