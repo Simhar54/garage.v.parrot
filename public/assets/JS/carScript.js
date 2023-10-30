@@ -101,7 +101,7 @@ function addCardCarBootstrap(
 ) {
   const cardCar = document.createElement("div");
   cardCar.id = $id;
-  cardCar.className = "card cardCar col col-10 col-lg-2 mt-3 mx-3";
+  cardCar.className = "card cardCar col col-10 col-sm-4 col-lg-2 mt-3 mx-2";
   cardCar.innerHTML = `
             <div class="card-body">
                 <img src="../../images/cars/${escapeHtml(

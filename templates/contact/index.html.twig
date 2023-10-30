@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/CSS/contactStyle.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="banniere text-center d-flex align-items-center justify-content-center">
+		<div>
+			<h1>Garage V Parrot</h1>
+			<p>Mécanique de précision , service de passion</p>
+		</div>
+</div>
+
+<h2 class="text-center mt-3">Contact</h2>
+<div class="row">
+    <div class="col col-12 col-lg-6 my-4">
+        <div class="col col-8 mx-auto">
+            <p class="mt-2">Pour un service de qualité et une expertise reconnue, retrouvez-nous a l'adresse suivante:</p>
+            <p class="mt-2"><strong>
+                    123 Rue Imaginaire<br>
+                    9999 Nulle-Part France 
+                </strong>
+            </p>
+            <p>
+                Nous sommes également disponibles pour toute question au <a href="tel:0123456789" class="gp_link">0123456789</a>
+            </p>
+            <p>
+                Nos horaires d'ouverture sont les suivants:
+            </p>
+            <p>
+                <strong>
+                   <ul class="list-unstyled ms-0">
+                        <li>Lundi: 08h00-18h00</li>
+                        <li>Mardi: 08h00-18h00</li>
+                        <li>Mercredi: 08h00-18h00</li>
+                        <li>Jeudi: 08h00-18h00</li>
+                        <li>Vendredi: 08h00-18h00</li>
+                        <li>Samedi: 08h00-18h00</li>
+                        <li>Dimande: Fermé</li>
+                    </ul>
+                </strong>
+            </p>    
+        </div>    
+    </div>
+
+
+
+    <div class="col col-12 col-lg-6 my-4">
+        <div class="col col-8 mx-auto">
+            <p>Vous pouvez aussi nous envoyer un essage via le formualire de contact:</p>
+                <div>
+                {{form_errors(formContact)}}
+                {{ form_start(formContact) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(formContact.lastname) }}
+
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(formContact.firstname) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(formContact.phoneNumber) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(formContact.email) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{form_row(formContact.subject)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_row(formContact.message) }}
+                    </div>
+                </div>
+                <div class=" row text-center mt-2">
+                    <button type="submit" class="btn gp_button col-6 col-md-3 mx-auto">Envoyer</button>
+                </div>
+                
+                {{form_end(formContact)}}</div>
+        </div>        
+    </div>
+
+</div>
+
+
+{% endblock %}
