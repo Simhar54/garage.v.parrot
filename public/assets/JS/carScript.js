@@ -115,10 +115,20 @@ function addCardCarBootstrap(
                 <p class="card-text mt-2">Année: ${String($year)}</p>
                 <p class="card-text mt-2">Kilométrage: ${String($mileage)}km</p>
                 <div class="text-center">
-                    <a href="#" class="btn gp_button">Voir le detail</a>
+                  <button class="btn gp_button col-6" data-id="${$id}" onclick="viewDetails(this)">
+                    Voir le détail
+                  </button>
                 </div>
                
             </div>
         `;
   return cardCar;
 }
+
+
+function viewDetails(element) {
+  const id = element.getAttribute('data-id');
+  const url = `/car/car_detail/${id}`;
+  window.location.href = url;
+}
+
