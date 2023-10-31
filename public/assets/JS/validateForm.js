@@ -1,15 +1,39 @@
 // Validation functions
 
+// Function to validate input length
+function validateLength(input, min, max) {
+  const regex = new RegExp(`^.{${min},${max}}$`);
+  return regex.test(input.value);
+}
+
 // Function to validate if input contains only numbers or is empty
-function validateInteger(input) {
+function validateIntegerOrEmpty(input) {
   const regex = /^\d+$/;
   return input.value === "" || regex.test(input.value);
 }
+
+//Function to valdate if input format is correct for phone number
+function validatePhoneFormat(input) {
+  const regex = /^\+?\d{10,20}$/;
+  return regex.test(input.value);} 
 
 // Function to validate if input contains only numbers and has exactly 4 digits or is empty
 function validateYear(input) {
   const regex = /^\d{4}$/;
   return input.value === "" || regex.test(input.value);
+}
+
+// Function to validate email format
+function validateEmail(input) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(input.value);
+}
+
+
+//Fuction to validate if input contains only letters and authorized characters
+function validateLetters(input) {
+  const regex = /^[a-zA-ZÀ-ÿ\s\-']+$/ 
+  return regex.test(input.value);
 }
 
 // Function to ensure min is less than max for two inputs
@@ -50,7 +74,7 @@ function validateFields(input) {
 
   // Validation for the fields kmMin and kmMax
   if (fieldName === "kmMin" || fieldName === "kmMax") {
-    if (!validateInteger(input)) {
+    if (!validateIntegerOrEmpty(input)) {
       setErrorMessage(input, "Km invalide.");
       isValid = false;
     } else if (
@@ -68,7 +92,7 @@ function validateFields(input) {
 
   // Validation for the fields priceMin and priceMax
   if (fieldName === "priceMin" || fieldName === "priceMax") {
-    if (!validateInteger(input)) {
+    if (!validateIntegerOrEmpty(input)) {
       setErrorMessage(input, "Prix invalide.");
       isValid = false;
     } else if (
@@ -78,6 +102,61 @@ function validateFields(input) {
       )
     ) {
       setErrorMessage(input, "Min > Max!");
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+  }
+
+  // Validation for the fields contact[lastname] and contact[firstname]
+  if (fieldName === "contact[lastname]" || fieldName === "contact[firstname]") {
+    if (!validateLength(input, 1 , 50)) {
+      setErrorMessage(input, "Doit contenir entre 1 et 50 caractères.");
+      isValid = false;
+    } else if (!validateLetters(input)) {
+      setErrorMessage(input, "Utilisez lettres, espaces, tirets (-) et apostrophes (').");
+      isValid = false;
+    } 
+    else {
+      isValid = true;
+    }
+  }
+
+  // Validation for the fields contact[phoneNumber]
+  if(fieldName === "contact[phoneNumber]") { 
+    if (!validatePhoneFormat(input)) {
+      setErrorMessage(input, "Seuls les chiffres et le signe + sont autorisés entre 10 et 20 caractères.");
+      isValid = false;
+    } 
+    else {
+      isValid = true;
+    }
+  }
+
+  // Validation for the fields contact[email]
+  if (fieldName === "contact[email]") {
+    if (!validateEmail(input)) {
+      setErrorMessage(input, "Format invalide.");
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+  }
+
+  //Validation for the field contact[subject]
+  if (fieldName === "contact[subject]") {
+    if (!validateLength(input, 1, 200)) {
+      setErrorMessage(input, "Doit contenir entre 1 et 200 caractères.");
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+  }
+
+  //Validation for the field contact[message]
+  if (fieldName === "contact[message]") {
+    if (!validateLength(input, 1, 5000)) {
+      setErrorMessage(input, "Doit contenir entre 1 et 5000 caractères.");
       isValid = false;
     } else {
       isValid = true;

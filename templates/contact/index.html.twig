@@ -58,29 +58,57 @@
                 {{ form_start(formContact) }}
                 <div class="row">
                     <div class="col-md-6">
-                        {{ form_row(formContact.lastname) }}
+                        <div>
+                            {{ form_label(formContact.lastname) }}
+                            {{ form_widget(formContact.lastname) }}
+                            <div class="invalid-feedback gp_invalid_feedback">
+                                Veuillez entrer un nom valide.
+                            </div>
+                        </div>
+                    </div>
 
-                    </div>
                     <div class="col-md-6">
-                        {{ form_row(formContact.firstname) }}
+                        <div>
+                            {{ form_label(formContact.firstname) }}
+                            {{ form_widget(formContact.firstname) }}
+                            <div class="invalid-feedback gp_invalid_feedback">
+                                Veuillez entrer un prénom valide.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {{ form_row(formContact.phoneNumber) }}
+                        {{ form_label(formContact.phoneNumber) }}
+                        {{ form_widget(formContact.phoneNumber) }}
+                        <div class="invalid-feedback gp_invalid_feedback">
+                            Veuillez entrer un numéro de téléphone valide.
+                        </div>    
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(formContact.email) }}
+                        {{ form_label(formContact.email) }}
+                        {{ form_widget(formContact.email) }}
+                        <div class="invalid-feedback gp_invalid_feedback">
+                            Veuillez entrer une adresse mail valide.
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        {{form_row(formContact.subject)}}
+                        {{ form_label(formContact.subject) }}
+                        {{ form_widget(formContact.subject) }}
+                        <div class="invalid-feedback gp_invalid_feedback">
+                            Veuillez entrer un sujet valide.
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        {{ form_row(formContact.message) }}
+                        {{ form_label(formContact.message) }}
+                        {{ form_widget(formContact.message) }}
+                        <div class="invalid-feedback gp_invalid_feedback">
+                            Veuillez entrer un message valide.
+                        </div>
                     </div>
                 </div>
                 <div class=" row text-center mt-2">
@@ -93,5 +121,6 @@
 
 </div>
 
+<script src="{{ asset('assets/JS/validateForm.js') }}"></script>
 
 {% endblock %}
