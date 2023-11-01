@@ -21,9 +21,13 @@ class Garage
     #[ORM\OneToMany(mappedBy: 'garage_id', targetEntity: User::class)]
     private Collection $users;
 
+    #[ORM\OneToMany(mappedBy: 'garage', targetEntity: ServiceCategory::class, orphanRemoval: true)]
+    private Collection $serviceCategories;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->serviceCategories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Garage
             // set the owning side to null (unless already changed)
             if ($user->getGarageId() === $this) {
                 $user->setGarageId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ServiceCategory>
+     */
+    public function getServiceCategories(): Collection
+    {
+        return $this->serviceCategories;
+    }
+
+    public function addServiceCategory(ServiceCategory $serviceCategory): static
+    {
+        if (!$this->serviceCategories->contains($serviceCategory)) {
+            $this->serviceCategories->add($serviceCategory);
+            $serviceCategory->setGarage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeServiceCategory(ServiceCategory $serviceCategory): static
+    {
+        if ($this->serviceCategories->removeElement($serviceCategory)) {
+            // set the owning side to null (unless already changed)
+            if ($serviceCategory->getGarage() === $this) {
+                $serviceCategory->setGarage(null);
             }
         }
 
