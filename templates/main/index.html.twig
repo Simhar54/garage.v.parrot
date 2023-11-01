@@ -15,4 +15,24 @@
     </div>	
 </div>
 
+<section>
+    <div class="row d-flex justify-content-around">
+        {% for category in categories %}
+        <div class="col col-10 col-sm-4 col-lg-3 m-4 gp_service_container">
+            <h5 class="text-center my-3">{{category.name}}</h5>
+            <ul>
+                {% for service in category.services %}
+                    <li class="fs-6 mb-2">{{service.name}} - Prix: {{service.price}}€</li>
+                {% endfor %}
+                
+            </ul>
+        </div> 
+
+           
+        {% endfor %}
+    </div>
+
+</section>
+
+
 {% endblock %}

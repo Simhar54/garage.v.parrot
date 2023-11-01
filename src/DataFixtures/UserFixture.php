@@ -23,7 +23,7 @@ class UserFixture extends Fixture
         $admin->setFirstname('Admin');
         $admin->setPassword($this->passwordEncoder->hashPassword($admin, 'admin'));
         $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setGarageId(null);
+        $admin->setGarage(null);
         $admin->setCreatedAt(new \DateTimeImmutable());
         $admin->setFirstTimeLogin(false);
 
