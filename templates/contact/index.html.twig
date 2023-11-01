@@ -52,9 +52,14 @@
 
     <div class="col col-12 col-lg-6 my-4">
         <div class="col col-8 mx-auto">
+        <!--flash message-->
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
             <p>Vous pouvez aussi nous envoyer un essage via le formualire de contact:</p>
                 <div>
-                {{form_errors(formContact)}}
                 {{ form_start(formContact) }}
                 <div class="row">
                     <div class="col-md-6">
@@ -64,6 +69,7 @@
                             <div class="invalid-feedback gp_invalid_feedback">
                                 Veuillez entrer un nom valide.
                             </div>
+                            {{ form_errors(formContact.lastname) }}
                         </div>
                     </div>
 
@@ -116,6 +122,7 @@
                 </div>
                 
                 {{form_end(formContact)}}</div>
+               
         </div>        
     </div>
 
