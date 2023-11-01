@@ -8,6 +8,22 @@
 {% endblock %}
 
 {% block body %}
+    <div class="row d-flex justify-content-center mt-4">
+        <div class="col col-6">
+            <!--flash message-->
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 <div class="row">
     <div class="col col-12 col-lg-6 d-flex justify-content-center align-items-center">
         <div class="image-galery d-none d-lg-block">
@@ -26,8 +42,10 @@
             <div class="text-center mt-4">
                 Ce vehicule vous interesse ? <br>
                 <strong>Contactez nous!</strong>
-                <div>
-                    <a href="#" class="btn btn-sm gp_button mt-2">Contact</a>
+                <div class="mt-2">
+                    <button type="button" class="btn gp_button modal_button" data-bs-toggle="modal" data-bs-target="#contactModal" data-bran={{car.brand}} data-model={{car.model}}>
+                        Contact
+                    </button>
                 </div>
             </div>
 
@@ -92,14 +110,42 @@
             </div>
         </div>
     </div>
-      <div class="text-center mt-4 d-block d-lg-none">
-            Ce vehicule vous interesse ? <br>
-            <strong>Contactez nous!</strong>
-            <div>
-                <a href="#" class="btn btn-sm gp_button mt-2">Contact</a>
-            </div>
-       </div>
+    
+    <div class="text-center mt-4 d-block d-lg-none">
+        Ce vehicule vous interesse ?
+        <br>
+        <strong>Contactez nous!</strong>
+        <div class="mt-2">
+            <button type="button" class="btn gp_button modal_button" data-bs-toggle="modal" data-bs-target="#contactModal" data-bran={{car.brand}} data-model={{car.model}}>
+                Contact
+            </button>
+        </div>
+    </div>
+
 </div>
 
+<!-- Modal Contact -->
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 ms-3" id="contactModalLabel">Contact</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% include "form/contactForm.html.twig" %}
+      </div>
+      <div class="modal-footer">
+        <p class="fs-6">*Nous vous repondrons dans les meilleurs délais.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="{{asset('assets/JS/galleryDetail.js')}}"></script>
+<script src="{{ asset('assets/JS/validateForm.js') }}"></script>
+<script src="{{ asset('assets/JS/preWriteForm.js') }}"></script>
+
 {% endblock %}

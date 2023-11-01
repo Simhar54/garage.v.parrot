@@ -58,70 +58,16 @@
                 {{ message }}
             </div>
         {% endfor %}
-            <p>Vous pouvez aussi nous envoyer un essage via le formualire de contact:</p>
-                <div>
-                {{ form_start(formContact) }}
-                <div class="row">
-                    <div class="col-md-6">
-                        <div>
-                            {{ form_label(formContact.lastname) }}
-                            {{ form_widget(formContact.lastname) }}
-                            <div class="invalid-feedback gp_invalid_feedback">
-                                Veuillez entrer un nom valide.
-                            </div>
-                            {{ form_errors(formContact.lastname) }}
-                        </div>
-                    </div>
+         {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+            <p>Vous pouvez aussi nous envoyer un message via le formualire de contact:</p>
 
-                    <div class="col-md-6">
-                        <div>
-                            {{ form_label(formContact.firstname) }}
-                            {{ form_widget(formContact.firstname) }}
-                            <div class="invalid-feedback gp_invalid_feedback">
-                                Veuillez entrer un prénom valide.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ form_label(formContact.phoneNumber) }}
-                        {{ form_widget(formContact.phoneNumber) }}
-                        <div class="invalid-feedback gp_invalid_feedback">
-                            Veuillez entrer un numéro de téléphone valide.
-                        </div>    
-                    </div>
-                    <div class="col-md-6">
-                        {{ form_label(formContact.email) }}
-                        {{ form_widget(formContact.email) }}
-                        <div class="invalid-feedback gp_invalid_feedback">
-                            Veuillez entrer une adresse mail valide.
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        {{ form_label(formContact.subject) }}
-                        {{ form_widget(formContact.subject) }}
-                        <div class="invalid-feedback gp_invalid_feedback">
-                            Veuillez entrer un sujet valide.
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        {{ form_label(formContact.message) }}
-                        {{ form_widget(formContact.message) }}
-                        <div class="invalid-feedback gp_invalid_feedback">
-                            Veuillez entrer un message valide.
-                        </div>
-                    </div>
-                </div>
-                <div class=" row text-center mt-2">
-                    <button type="submit" class="btn gp_button col-6 col-md-3 mx-auto">Envoyer</button>
-                </div>
-                
-                {{form_end(formContact)}}</div>
+            {% include "form/contactForm.html.twig" %}
+
+            
                
         </div>        
     </div>
