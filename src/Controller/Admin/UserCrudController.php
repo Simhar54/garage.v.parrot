@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -53,6 +54,11 @@ class UserCrudController extends AbstractCrudController
                 ->setFormTypeOptions([
                     'attr' => ['placeholder' => 'Doit contenir au moins 12 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial']
                 ]),
+            AssociationField::new('garage')
+                ->setLabel('Garage')
+                ->setFormTypeOptions([
+                    'attr' => ['placeholder' => 'Doit contenir au moins 2 caractères']
+                ]),
             ArrayField::new('roles')
                 ->setLabel('Rôles')
                 ->hideOnForm(),
@@ -72,7 +78,7 @@ class UserCrudController extends AbstractCrudController
     {
         $user = $entityInstance;
         // Set default role if none is set
-            $user->setRoles(['ROLE_EMPLOYEE']);
+        $user->setRoles(['ROLE_EMPLOYEE']);
         // Hash password before persisting
         $plainPassword = $user->getPassword();
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);

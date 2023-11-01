@@ -137,12 +137,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getGarageId(): ?garage
+    public function getGarage(): ?garage
     {
         return $this->garage;
     }
 
-    public function setGarageId(?garage $garage): static
+    public function setGarage(?garage $garage): static
     {
         $this->garage = $garage;
 

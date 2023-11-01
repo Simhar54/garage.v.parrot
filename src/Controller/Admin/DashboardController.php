@@ -3,10 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Car;
-use App\Entity\CarImage;
 use App\Entity\User;
 use App\Entity\Option;
+use App\Entity\Service;
+use App\Entity\CarImage;
 use App\Entity\Equipment;
+use App\Entity\ServiceCategory;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -35,6 +37,8 @@ class DashboardController extends AbstractDashboardController
         #Menu Adminstrateur
         yield MenuItem::subMenu('Adminstrateur', 'fa fa-lock')->setSubItems([
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
+            MenuItem::linkToCrud('Catégorie de service', 'fa fa-list', ServiceCategory::class),
+            MenuItem::linkToCrud('Service', 'fa fa-wrench', Service::class),
             
         ]);
 

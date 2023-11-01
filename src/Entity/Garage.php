@@ -59,7 +59,7 @@ class Garage
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->setGarageId($this);
+            $user->setGarage($this);
         }
 
         return $this;
@@ -69,8 +69,8 @@ class Garage
     {
         if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
-            if ($user->getGarageId() === $this) {
-                $user->setGarageId(null);
+            if ($user->getGarage() === $this) {
+                $user->setGarage(null);
             }
         }
 
@@ -105,5 +105,10 @@ class Garage
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }
