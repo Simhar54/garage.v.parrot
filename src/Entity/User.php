@@ -58,7 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $first_time_login = null;
 
-    #[ORM\OneToMany(mappedBy: 'employee_id', targetEntity: Car::class)]
+    #[ORM\OneToMany(mappedBy: 'employee', targetEntity: Car::class)]
     private Collection $cars;
 
     public function __construct()

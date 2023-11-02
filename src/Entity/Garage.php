@@ -18,7 +18,7 @@ class Garage
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'garage_id', targetEntity: User::class)]
+    #[ORM\OneToMany(mappedBy: 'garage', targetEntity: User::class)]
     private Collection $users;
 
     #[ORM\OneToMany(mappedBy: 'garage', targetEntity: ServiceCategory::class, orphanRemoval: true)]
