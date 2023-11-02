@@ -24,6 +24,9 @@ class Garage
     #[ORM\OneToMany(mappedBy: 'garage', targetEntity: ServiceCategory::class, orphanRemoval: true)]
     private Collection $serviceCategories;
 
+    #[ORM\OneToOne(mappedBy: 'garage', cascade: ['persist', 'remove'])]
+    private ?OpeningHour $openingHour = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -110,5 +113,22 @@ class Garage
     public function __toString(): string
     {
         return $this->getName();
+    }
+
+    public function getOpeningHour(): ?OpeningHour
+    {
+        return $this->openingHour;
+    }
+
+    public function setOpeningHour(OpeningHour $openingHour): static
+    {
+        // set the owning side of the relation if necessary
+        if ($openingHour->getGarage() !== $this) {
+            $openingHour->setGarage($this);
+        }
+
+        $this->openingHour = $openingHour;
+
+        return $this;
     }
 }
