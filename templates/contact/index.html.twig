@@ -35,13 +35,9 @@
             <p>
                 <strong>
                    <ul class="list-unstyled ms-0">
-                        <li>Lundi: 08h00-18h00</li>
-                        <li>Mardi: 08h00-18h00</li>
-                        <li>Mercredi: 08h00-18h00</li>
-                        <li>Jeudi: 08h00-18h00</li>
-                        <li>Vendredi: 08h00-18h00</li>
-                        <li>Samedi: 08h00-18h00</li>
-                        <li>Dimande: Fermé</li>
+                        {% for day, hours in openingHourService.getOpeningHour %}
+                            <li>{{ day }} : {{ hours }}</li>
+                        {% endfor %}
                     </ul>
                 </strong>
             </p>    
