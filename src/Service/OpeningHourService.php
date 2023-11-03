@@ -2,20 +2,23 @@
 
 namespace App\Service;
 
+use App\Service\GarageId;
 use App\Repository\OpeningHourRepository;
 
 class OpeningHourService 
 {
     private $openingHourRepository;
+    private $garageId;
 
-    public function __construct(OpeningHourRepository $openingHourRepository)
+    public function __construct(OpeningHourRepository $openingHourRepository, GarageId $garageIdService)
     {
         $this->openingHourRepository = $openingHourRepository;
+        $this->garageId = $garageIdService->getGarageId();
     }
 
     public function getOpeningHour()
     {
-        $openingHour = $this->openingHourRepository->findOneBy([]);
+        $openingHour = $this->openingHourRepository->findOneBy(['garage' => $this->garageId]);
     
         $formatted = [];
     

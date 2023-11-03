@@ -25,6 +25,10 @@ services:
         tags:
             - { name: vich_uploader.namer, mapping: car_images }
 
+    App\Service\GarageId:
+        arguments:
+            $garageId: '%env(GARAGE_ID)%'
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
