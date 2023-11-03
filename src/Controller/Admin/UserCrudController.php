@@ -67,7 +67,7 @@ class UserCrudController extends AbstractCrudController
                 ->onlyOnIndex(),
             BooleanField::new('first_time_login')
                 ->setLabel('Première connexion')
-                ->onlyOnIndex(),
+                ->hideOnIndex(),
 
                
         ];

@@ -65,7 +65,7 @@ class TestimonyCrudController extends AbstractCrudController
                 ->onlyOnIndex(),
             BooleanField::new('is_moderated')
                 ->setLabel('Approuvé')
-                ->onlyOnIndex(),
+                ->hideOnIndex(),
             
            
         ];
