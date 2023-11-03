@@ -27,10 +27,14 @@ class Garage
     #[ORM\OneToOne(mappedBy: 'garage', cascade: ['persist', 'remove'])]
     private ?OpeningHour $openingHour = null;
 
+    #[ORM\OneToMany(mappedBy: 'garage', targetEntity: Testimony::class, orphanRemoval: true)]
+    private Collection $testimonies;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->serviceCategories = new ArrayCollection();
+        $this->testimonies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +132,36 @@ class Garage
         }
 
         $this->openingHour = $openingHour;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Testimony>
+     */
+    public function getTestimonies(): Collection
+    {
+        return $this->testimonies;
+    }
+
+    public function addTestimony(Testimony $testimony): static
+    {
+        if (!$this->testimonies->contains($testimony)) {
+            $this->testimonies->add($testimony);
+            $testimony->setGarage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTestimony(Testimony $testimony): static
+    {
+        if ($this->testimonies->removeElement($testimony)) {
+            // set the owning side to null (unless already changed)
+            if ($testimony->getGarage() === $this) {
+                $testimony->setGarage(null);
+            }
+        }
 
         return $this;
     }
