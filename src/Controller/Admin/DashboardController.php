@@ -8,6 +8,7 @@ use App\Entity\Option;
 use App\Entity\Service;
 use App\Entity\CarImage;
 use App\Entity\Equipment;
+use App\Entity\Testimony;
 use App\Entity\OpeningHour;
 use App\Entity\ServiceCategory;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +53,15 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Images', 'fa fa-image', CarImage::class),
             
         ]) ;
+
+        yield MenuItem::subMenu('Modération des témoignages', 'fa fa-comments')
+            ->setSubItems([
+                MenuItem::linkToCrud('Approuvés', 'fa fa-comment-check', Testimony::class)
+                    ->setQueryParameter('filters', ['is_moderated' => '1']),
+                MenuItem::linkToCrud('En attente', 'fa fa-comment-slash', Testimony::class)
+                    ->setQueryParameter('filters', ['is_moderated' => '0']),
+            ]);
+
 
         #return Accueil
         yield MenuItem::linkToRoute('Retour au site', 'fa fa-home', 'app_main');

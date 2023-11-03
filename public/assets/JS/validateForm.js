@@ -108,8 +108,8 @@ function validateFields(input) {
     }
   }
 
-  // Validation for the fields contact[lastname] and contact[firstname]
-  if (fieldName === "contact[lastname]" || fieldName === "contact[firstname]") {
+  // Validation for the fields contact[lastname] ,contact[firstname], testimony[lastname] and testimony[firstname]
+  if (fieldName === "contact[lastname]" || fieldName === "contact[firstname]" || fieldName === "testimony[lastname]" || fieldName === "testimony[firstname]") {
     if (!validateLength(input, 1 , 50)) {
       setErrorMessage(input, "Doit contenir entre 1 et 50 caractères.");
       isValid = false;
@@ -153,8 +153,8 @@ function validateFields(input) {
     }
   }
 
-  //Validation for the field contact[message]
-  if (fieldName === "contact[message]") {
+  //Validation for the field contact[message], testimony[message]
+  if (fieldName === "contact[message]" || fieldName === "testimony[message]") {
     if (!validateLength(input, 1, 5000)) {
       setErrorMessage(input, "Doit contenir entre 1 et 5000 caractères.");
       isValid = false;

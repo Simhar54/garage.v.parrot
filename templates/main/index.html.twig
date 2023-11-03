@@ -14,6 +14,22 @@
 	    <p>Mécanique de précision , service de passion</p>
     </div>	
 </div>
+<div class="row">
+	<div class="col-md-6 mt-3 mx-auto">
+		<!--flash message-->
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger">
+				{{ message }}
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
 
 <section>
     <div class="row d-flex justify-content-around">
@@ -31,8 +47,179 @@
            
         {% endfor %}
     </div>
+</section>
+<section>
+	<div class="row mt-5">
+		<div class="col col-md-6">
+			<h5 class="text-center">Ils nous ont fait confiance!</h5>
+			<div id="carouselTestimony" class="carousel carousel-dark slide col-6 mx-auto mt-3" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					{% for testimony in testimonies %}
+						{% if loop.first %}
+							<div class="carousel-item active">
+								<div class="d-flex justify-content-center">
+									<div class="card" style="width: 18rem;">
+										<div class="card-body">
+											<h5 class="card-title">{{testimony.lastname}}
+												{{testimony.firstname}}</h5>
+											<p class="card-text">{{testimony.message}}</p>
+											<p>Note:
+												{{testimony.rating}}/5</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% else %}
+							<div class="carousel-item">
+								<div class="d-flex justify-content-center">
+									<div class="card" style="width: 18rem;">
+										<div class="card-body">
+											<h5 class="card-title">{{testimony.lastname}}
+												{{testimony.firstname}}</h5>
+											<p class="card-text">{{testimony.message}}</p>
+											<p>Note:
+												{{testimony.rating}}/5</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimony" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselTestimony" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 
+			<div class="text-center mt-3">
+				<p>Partagez votre expérience et aidez nous à nous améliorer.</p>
+				<button class="btn gp_button mt-3" data-bs-toggle="modal" data-bs-target="#testimonyModal">
+					Laisser un avis
+				</button>
+			</div>
+		</div>
+
+		<div class="col col-md-6">
+			<h5 class="text-center">Nos voiture d'occasion</h5>
+			<div id="carouselCar" class="carousel carousel-dark slide col-6 mx-auto mt-3" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					{% for car in cars %}
+						{% if loop.first %}
+							<div class="carousel-item active">
+								<div class="d-flex justify-content-center">
+									<div class="card" style="width: 18rem;">
+										<div class="card-body">
+											<img src="{{asset('images/cars/' ~ car.carImages[0])}}" class="d-block w-100" alt="image de la voiture">
+											<h5 class="card-title">{{car.brand}}
+												{{car.model}}</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% else %}
+							<div class="carousel-item">
+								<div class="d-flex justify-content-center">
+									<div class="d-flex justify-content-center">
+									<div class="card" style="width: 18rem;">
+										<div class="card-body">
+											<img src="{{asset('images/cars/' ~ car.carImages[0])}}" class="d-block w-100" alt="image de la voiture">
+											<h5 class="card-title">{{car.brand}}
+												{{car.model}}</h5>
+										</div>
+									</div>
+								</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselCar" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselCar" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+
+			<div class="text-center mt-3">
+				
+				<a href="{{path('app_car')}}" class ="btn gp_button">Voir nos occasion</a>
+			</div>
+		</div>
+
+	</div>
 </section>
 
 
+
+
+
+<!-- Modal Testimony -->
+<div class="modal fade" id="testimonyModal" tabindex="-1" aria-labelledby="testmonyModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="testmonyModalLabel">Votre opinion compte!</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{ form_start(testimonyForm) }}
+				<div class="row">
+					<div class="col-md-6">
+						<div>
+							{{ form_label(testimonyForm.lastname) }}
+							{{ form_widget(testimonyForm.lastname) }}
+							<div class="invalid-feedback gp_invalid_feedback">
+								Veuillez entrer un nom valide.
+							</div>
+							{{ form_errors(testimonyForm.lastname) }}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div>
+							{{ form_label(testimonyForm.firstname) }}
+							{{ form_widget(testimonyForm.firstname) }}
+							<div class="invalid-feedback gp_invalid_feedback">
+								Veuillez entrer un prénom valide.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						{{ form_label(testimonyForm.message) }}
+						{{ form_widget(testimonyForm.message) }}
+						<div class="invalid-feedback gp_invalid_feedback">
+							Veuillez entrer un message valide.
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						{{ form_label(testimonyForm.rating) }}
+						{{ form_widget(testimonyForm.rating) }}
+						<div class="invalid-feedback gp_invalid_feedback">
+							Veuillez entrer une note valide.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn gp_button col-6 col-md-3 mx-auto">Envoyer</button>
+				{{form_end(testimonyForm)}}.
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script src="{{ asset('assets/JS/validateForm.js') }}"></script>
 {% endblock %}

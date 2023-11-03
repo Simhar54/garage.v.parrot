@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TestimonyRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
 class Testimony
 {
     #[ORM\Id]
@@ -32,6 +33,7 @@ class Testimony
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner une note')]
+    #[Assert\Range(min: 0, max: 5, notInRangeMessage: 'La note doit être comprise entre {{ min }} et {{ max }}')]
     private ?int $rating = null;
 
     #[ORM\Column]
