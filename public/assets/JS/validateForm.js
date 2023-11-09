@@ -6,6 +6,13 @@ function validateLength(input, min, max) {
   return regex.test(input.value);
 }
 
+// Fuction to validate textarea length and allow line breaks
+function validateTextareaLength(input, min, max) {
+  const regex = new RegExp(`^[\\s\\S]{${min},${max}}$`);
+  return regex.test(input.value);
+}
+
+
 // Function to validate if input contains only numbers or is empty
 function validateIntegerOrEmpty(input) {
   const regex = /^\d+$/;
@@ -155,7 +162,7 @@ function validateFields(input) {
 
   //Validation for the field contact[message], testimony[message]
   if (fieldName === "contact[message]" || fieldName === "testimony[message]") {
-    if (!validateLength(input, 1, 5000)) {
+    if (!validateTextareaLength(input, 1, 5000)) {
       setErrorMessage(input, "Doit contenir entre 1 et 5000 caractères.");
       isValid = false;
     } else {
