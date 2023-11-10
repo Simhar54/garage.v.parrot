@@ -50,7 +50,7 @@
 </section>
 <section>
 	<div class="row mt-5">
-		<div class="col col-md-6">
+		<div class="col col-lg-6">
 			<h5 class="text-center">Ils nous ont fait confiance!</h5>
 			<div id="carouselTestimony" class="carousel carousel-dark slide col-8 mx-auto mt-3" data-bs-ride="carousel">
 				<div class="carousel-inner">
@@ -104,7 +104,7 @@
 			</div>
 		</div>
 		<!-- Carrousel car -->
-		<div class="col col-md-6">
+		<div class="col col-lg-6">
 			<h5 class="text-center">Nos voiture d'occasion</h5>
 			<div id="carouselCar" class="carousel carousel-dark slide col-8 mx-auto mt-3" data-bs-ride="carousel">
 				<div class="carousel-inner">
@@ -112,11 +112,13 @@
 						{% if loop.first %}
 							<div class="carousel-item active">
 								<div class="d-flex justify-content-center">
-									<div class="card gp_card_main">
-										<div class="card-body d-flex flex-column align-items-center">
-											<img src="{{asset('images/cars/' ~ car.carImages[0])}}" class="gp_card_img_main" alt="image de la voiture">
-											<h5 class="card-title text-center">{{car.brand}}
-												{{car.model}}</h5>
+									<div class="card gp_card_main">											<img src="{{asset('images/cars/' ~ car.carImages[0])}}" class="card-img-top gp_card_img_main" alt="image de la voiture">
+										<div class="card-body d-flex flex-column align-items-center justify-content-center">
+											<div class="my-auto">
+												<h5 class="card-title text-center">
+													{{car.brand}} {{car.model}}
+												</h5>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -125,14 +127,20 @@
 							<div class="carousel-item">
 								<div class="d-flex justify-content-center">
 									<div class="d-flex justify-content-center">
-									<div class="card gp_card_main">
-										<div class="card-body d-flex flex-column align-items-center">
-											<img src="{{asset('images/cars/' ~ car.carImages[0])}}" class="gp_card_img_main" alt="image de la voiture">
-											<h5 class="card-title text-center ">{{car.brand}}
-												{{car.model}}</h5>
+										<div class="card gp_card_main">
+											<div class="card gp_card_main">
+												<img src="{{asset('images/cars/' ~ car.carImages[0])}}" class="card-img-top gp_card_img_main" alt="image de la voiture">
+												<div class="card-body d-flex flex-column align-items-center justify-content-center">
+													<div class="my-auto">
+														<h5 class="card-title text-center">
+															{{car.brand}} {{car.model}}
+														</h5>
+													</div>
+												</div>
+											</div>
+
 										</div>
 									</div>
-								</div>
 								</div>
 							</div>
 						{% endif %}
