@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Testimony;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,7 +22,7 @@ class TestimonyType extends AbstractType
             'attr' => [
                 'class' => 'form-control mt-2',
                 'name' => 'lastname',
-                'id' => 'name',
+                'id' => 'lastname',
                 'oninput' => 'validateFields(this)'
             ],
         ])
@@ -32,7 +32,7 @@ class TestimonyType extends AbstractType
                 'attr' => [
                     'class' => 'form-control mt-2',
                     'name' => 'firstname',
-                    'id' => 'name',
+                    'id' => 'firstname',
                     'oninput' => 'validateFields(this)'
                 ],
             ])
@@ -42,20 +42,19 @@ class TestimonyType extends AbstractType
                 'attr' => [
                     'class' => 'form-control mt-2',
                     'name' => 'message',
-                    'id' => 'name',
+                    'id' => 'message',
                     'oninput' => 'validateFields(this)', 
                     'rows' => '5'
                 ],
             ])
-            ->add('rating', IntegerType::class, [
+            ->add('rating', HiddenType::class, [
                 'label' => 'Votre note',
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control mt-2',
                     'name' => 'rating',
                     'id' => 'name',
-                    'oninput' => 'validateFields(this)',
-                    
+                    'oninput' => 'validateFields(this)',             
                 ],
             ])
         ;

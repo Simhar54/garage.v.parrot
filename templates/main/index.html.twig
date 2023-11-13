@@ -60,11 +60,18 @@
 								<div class="d-flex justify-content-center">
 									<div class="card gp_card_main" >
 										<div class="card-body d-flex flex-column align-items-center justify-content-center">
-											<h5 class="card-title">{{testimony.lastname}} <br>
-												{{testimony.firstname}}</h5>
-											<p class="card-text gp_card_text 	">{{testimony.message}}</p>
-											<p>Note:
-												{{testimony.rating}}/5</p>
+											<h5 class="card-title">{{ testimony.lastname }} <br>
+												{{ testimony.firstname }}</h5>
+											<p class="card-text gp_card_text">{{ testimony.message }}</p>
+											<p>
+												{% for i in 1..5 %}
+													{% if i <= testimony.rating %}
+														<img src="{{ asset('image/icon/star-fill.svg') }}" alt="star" class="gp_star_card" /> 
+													{% else %}
+														<img src="{{ asset('image/icon/star.svg') }}" alt="star" class="gp_star_card" />
+													{% endif %}
+												{% endfor %}
+											</p>
 										</div>
 									</div>
 								</div>
@@ -72,13 +79,20 @@
 						{% else %}
 							<div class="carousel-item">
 								<div class="d-flex justify-content-center">
-									<div class="card gp_card_main">
+									<div class="card gp_card_main" >
 										<div class="card-body d-flex flex-column align-items-center justify-content-center">
-											<h5 class="card-title">{{testimony.lastname}} <br>
-												{{testimony.firstname}}</h5>
-											<p class="card-text gp_card_text">{{testimony.message}}</p>
-											<p>Note:
-												{{testimony.rating}}/5</p>
+											<h5 class="card-title">{{ testimony.lastname }} <br>
+												{{ testimony.firstname }}</h5>
+											<p class="card-text gp_card_text">{{ testimony.message }}</p>
+											<p>
+												{% for i in 1..5 %}
+													{% if i <= testimony.rating %}
+														<img src="{{ asset('image/icon/star-fill.svg') }}" alt="star" class="gp_star_card" /> 
+													{% else %}
+														<img src="{{ asset('image/icon/star.svg') }}" alt="star" class="gp_star_card" /> 
+													{% endif %}
+												{% endfor %}
+											</p>
 										</div>
 									</div>
 								</div>
@@ -216,6 +230,15 @@
 						<div class="invalid-feedback gp_invalid_feedback">
 							Veuillez entrer une note valide.
 						</div>
+						<div class="text-center" id="rating-stars">
+							{% for i in 1..5 %}
+								<span class="star" data-value="{{ i }}">
+									<img src="{{asset('image/icon/star.svg')}}" alt="star">
+								</span>
+							{% endfor %}
+						</div>
+
+						
 					</div>
 				</div>
 			</div>
@@ -230,4 +253,5 @@
 
 
 <script src="{{ asset('assets/JS/validateForm.js') }}"></script>
+<script src="{{ asset('assets/JS/ratingStar.js') }}"></script>
 {% endblock %}

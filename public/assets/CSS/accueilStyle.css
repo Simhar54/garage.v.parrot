@@ -9,7 +9,8 @@
 }
 
 .gp_service_container {
-  background-image: linear-gradient(rgba(139, 0, 0, 0.7), rgba(139, 0, 0, 0.7)), url('../../image/bg_image/bpa.png');
+  background-image: linear-gradient(rgba(139, 0, 0, 0.7), rgba(139, 0, 0, 0.7)),
+    url("../../image/bg_image/bpa.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,33 +22,50 @@
 .gp_card_text {
   white-space: pre-line;
 }
+
 .gp_card_main {
-  display: flex; /* Utilise flexbox pour permettre une meilleure gestion de l'espace */
-  flex-direction: column; /* Les éléments enfants s'empilent verticalement */
+  display: flex; 
+  flex-direction: column; 
   width: 33vw;
-  height: 20vw; /* Hauteur fixée à 20vw, ajuste cette valeur au besoin */
+  height: 20vw;
   min-height: 250px;
   margin: auto;
   overflow: hidden;
-  background-image: linear-gradient(rgba(0, 72, 186, 0.7), rgba(0, 72, 186, 0.7)), url('../../image/bg_image/pja.png');
+  background-image: linear-gradient(
+    rgba(211, 211, 211, 0.7), /* Gris clair avec transparence */
+    rgba(211, 211, 211, 0.7)  /* Gris clair avec transparence */
+  ),
+  url("../../image/bg_image/pja.png");
+
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: #f5f5f5;
-
+  color:black;
 }
 
 .gp_card_img_main {
-  width: 100%; /* l'image prendra la largeur de son parent .gp_card_main */
-  height: 50%; /* l'image prendra 50% de la hauteur de .gp_card_main */
-  object-fit: contain; /* Toute l'image est visible, les proportions sont maintenues */
-  object-position: top; /* Positionne l'image en haut du cadre */
+  width: 100%; 
+  height: 50%; 
+  object-fit: contain; 
+  object-position: top; 
 }
+
+.star img {
+  width: 2em;
+  height: auto;
+}
+
+.gp_star_card{
+  width: 1.5em;
+  height: auto;
+  margin-right: 0.2em;
+}
+
 
 @media (max-width: 768px) {
   .gp_card_main {
     width: 80vw;
     height: auto;
-    /* La hauteur sera dynamique pour maintenir le ratio de l'image */
   }
+
 }
