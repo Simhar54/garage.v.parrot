@@ -11,6 +11,7 @@ use App\Entity\Equipment;
 use App\Entity\Testimony;
 use App\Entity\OpeningHour;
 use App\Entity\ServiceCategory;
+use App\Repository\TestimonyRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -19,10 +20,23 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
+    private $testimonyRepository;
+
+    public function __construct(TestimonyRepository $testimonyRepository)
+    {
+        $this->testimonyRepository = $testimonyRepository;
+    }
+
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
-      return $this->render('admin/dashboard.html.twig');
+        $testimonies = $this->testimonyRepository->findBy(['is_moderated' => false]);
+    
+
+      return $this->render('admin/dashboard.html.twig',
+      [
+          'testimonies' => $testimonies
+      ]);
        
     }
 
