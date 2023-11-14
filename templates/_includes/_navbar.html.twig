@@ -17,7 +17,7 @@
 					<a class="nav-link active" aria-current="page" href="{{path('app_contact')}}">Contact</a>
 				</li>
 				{% if app.user %}
-					{% if is_granted('ROLE_ADMIN') %}
+					{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="{{path('app_admin')}}">Admin</a>
 						</li>

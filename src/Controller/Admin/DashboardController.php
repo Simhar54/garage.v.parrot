@@ -50,14 +50,17 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
        
-        #Menu Adminstrateur
-        yield MenuItem::subMenu('Adminstrateur', 'fa fa-lock')->setSubItems([
-            MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
-            MenuItem::linkToCrud('Catégorie de service', 'fa fa-list', ServiceCategory::class),
-            MenuItem::linkToCrud('Service', 'fa fa-wrench', Service::class),
-            MenuItem::linkToCrud('Horaire d\'ouverture', 'fa fa-clock', OpeningHour::class)
-            
-        ]);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            #Menu Adminstrateur
+            yield MenuItem::subMenu('Adminstrateur', 'fa fa-lock')->setSubItems([
+                MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
+                MenuItem::linkToCrud('Catégorie de service', 'fa fa-list', ServiceCategory::class),
+                MenuItem::linkToCrud('Service', 'fa fa-wrench', Service::class),
+                MenuItem::linkToCrud('Horaire d\'ouverture', 'fa fa-clock', OpeningHour::class)
+                
+            ]);
+        }
+      
 
         #Menu Employé
         yield MenuItem::subMenu('Gestion Parc Voiture', 'fa fa-car')->setSubItems([
