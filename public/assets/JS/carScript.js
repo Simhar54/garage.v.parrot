@@ -22,7 +22,7 @@ fetch("/api/cars")
     console.error("Erreur lors de la récupération des voitures:", error);
     // Create Bootstrap alert
     const alertDiv = document.createElement("div");
-    alertDiv.className = "alert alert-danger alert-dismissible fade show";
+    alertDiv.className = "alert alert-danger alert-dismissible fade show mt-3";
     alertDiv.setAttribute("role", "alert");
     alertDiv.innerHTML = `
             Une erreur est survenue lors de la récupération des voitures. Veuillez réessayer plus tard.
@@ -47,6 +47,20 @@ filterForm.addEventListener("submit", (event) => {
     fetch(`/api/cars/filter?yearMin=${yearMin}&yearMax=${yearMax}&kmMin=${kmMin}&kmMax=${kmMax}&priceMin=${priceMin}&priceMax=${priceMax}`)
         .then((response) => response.json())
         .then((cars) => {
+
+            if (cars.length === 0) {
+                // Create Bootstrap alert
+                const alertDiv = document.createElement("div");
+                alertDiv.className = "alert alert-warning alert-dismissible fade show mt-3";
+                alertDiv.setAttribute("role", "alert");
+                alertDiv.innerHTML = `
+                        Aucun résultat ne correspond à votre recherche.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    `;
+                const alertContainer = document.getElementById("alertContainer");
+                alertContainer.appendChild(alertDiv);
+            } else {
+''
             const carList = document.getElementById("carCardContainer");
             carList.innerHTML = "";
             cars.forEach((car) => {
@@ -60,13 +74,13 @@ filterForm.addEventListener("submit", (event) => {
                     car.image
                 );
                 carList.appendChild(cardCar);
-            });
+            });}
         })
         .catch((error) => {
             console.error("Erreur lors de la récupération des voitures:", error);
             // Create Bootstrap alert
             const alertDiv = document.createElement("div");
-            alertDiv.className = "alert alert-danger alert-dismissible fade show";
+            alertDiv.className = "alert alert-danger alert-dismissible fade show mt-3";
             alertDiv.setAttribute("role", "alert");
             alertDiv.innerHTML = `
                     Une erreur est survenue lors de la récupération des voitures. Veuillez réessayer plus tard.
