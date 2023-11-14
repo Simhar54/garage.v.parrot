@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{%block title %}Cette page n'existe pas!{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <h1 class="my-4">Erreur 404</h1>
+        <p>La page que vous cherchez n'existe pas</p>
+        <p><a href="{{path('app_main')}}" class="gp_link">Retour a l'accueil</a></p>
+    </div>
+    
+{% endblock %}
