@@ -8,7 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 
 
-class GarageFixture extends Fixture
+class A_GarageFixture extends Fixture
 {
  
     public function load(ObjectManager $manager): void
@@ -17,5 +17,7 @@ class GarageFixture extends Fixture
         $garage->setName("Garage V Parrot");
         $manager->persist($garage);
         $manager->flush();
+
+        $this->addReference('garage-v-parrot', $garage);
     }
 }

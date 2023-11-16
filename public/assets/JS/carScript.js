@@ -4,6 +4,7 @@ const filterForm = document.getElementById("filterForm");
 fetch("/api/cars")
   .then((response) => response.json())
   .then((cars) => {
+    // Display cars
     const carList = document.getElementById("carCardContainer");
     cars.forEach((car) => {
       const cardCar = addCardCarBootstrap(
@@ -19,8 +20,8 @@ fetch("/api/cars")
     });
   })
   .catch((error) => {
+    // If error, create Bootstrap alert
     console.error("Erreur lors de la récupération des voitures:", error);
-    // Create Bootstrap alert
     const alertDiv = document.createElement("div");
     alertDiv.className = "alert alert-danger alert-dismissible fade show mt-3";
     alertDiv.setAttribute("role", "alert");
@@ -47,9 +48,8 @@ filterForm.addEventListener("submit", (event) => {
     fetch(`/api/cars/filter?yearMin=${yearMin}&yearMax=${yearMax}&kmMin=${kmMin}&kmMax=${kmMax}&priceMin=${priceMin}&priceMax=${priceMax}`)
         .then((response) => response.json())
         .then((cars) => {
-
             if (cars.length === 0) {
-                // Create Bootstrap alert
+               // If no car found, create Bootstrap alert 
                 const alertDiv = document.createElement("div");
                 alertDiv.className = "alert alert-warning alert-dismissible fade show mt-3";
                 alertDiv.setAttribute("role", "alert");
@@ -60,7 +60,7 @@ filterForm.addEventListener("submit", (event) => {
                 const alertContainer = document.getElementById("alertContainer");
                 alertContainer.appendChild(alertDiv);
             } else {
-''
+              // If cars found, display them
             const carList = document.getElementById("carCardContainer");
             carList.innerHTML = "";
             cars.forEach((car) => {
@@ -77,8 +77,8 @@ filterForm.addEventListener("submit", (event) => {
             });}
         })
         .catch((error) => {
+            // If error, create Bootstrap alert
             console.error("Erreur lors de la récupération des voitures:", error);
-            // Create Bootstrap alert
             const alertDiv = document.createElement("div");
             alertDiv.className = "alert alert-danger alert-dismissible fade show mt-3";
             alertDiv.setAttribute("role", "alert");
@@ -139,7 +139,7 @@ function addCardCarBootstrap(
   return cardCar;
 }
 
-
+// Redirect to car details page with car id
 function viewDetails(element) {
   const id = element.getAttribute('data-id');
   const url = `/car/car_detail/${id}`;
