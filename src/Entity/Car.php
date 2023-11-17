@@ -6,6 +6,7 @@ use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 #[ORM\HasLifecycleCallbacks()]
@@ -21,6 +22,8 @@ class Car
     private ?User $employee = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner un prix')]
+    #[Assert\Range(min: 0, max: 1000000, notInRangeMessage: 'Le prix doit être compris entre {{ min }} et {{ max }}')]
     private ?int $price = null;
 
     #[ORM\Column]
@@ -30,15 +33,23 @@ class Car
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une année')]
+    #[Assert\Range(min: 1900, max: 2100, notInRangeMessage: 'L\'année doit être comprise entre {{ min }} et {{ max }}')]
     private ?int $year = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner un kilométrage')]
+    #[Assert\Range(min: 0, max: 1000000, notInRangeMessage: 'Le kilométrage doit être compris entre {{ min }} et {{ max }}')]
     private ?int $mileage = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une marque')]
+    #[Assert\Length(min: 2, max: 50, minMessage: 'La marque doit contenir au moins {{ limit }} caractères', maxMessage: 'La marque doit contenir au maximum {{ limit }} caractères')]
     private ?string $brand = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner un modèle')]
+    #[Assert\Length(min: 2, max: 50, minMessage: 'Le modèle doit contenir au moins {{ limit }} caractères', maxMessage: 'Le modèle doit contenir au maximum {{ limit }} caractères')]
     private ?string $model = null;
 
     #[ORM\ManyToMany(targetEntity: Option::class)]

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OpeningHourRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OpeningHourRepository::class)]
 class OpeningHour
@@ -15,45 +16,73 @@ class OpeningHour
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $monday_open = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $monday_close = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $tuesday_open = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $tuesday_close = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $wednesday_open = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $wednesday_close = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $thursday_open = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $thursday_close = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $friday_open = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $friday_close = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $saturday_open = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $saturday_close = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $sunday_open = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner une heure d\'ouverture')]
+    #[Assert\Time(message: 'Veuillez renseigner une heure valide')]
     private ?\DateTimeInterface $sunday_close = null;
 
     #[ORM\OneToOne(inversedBy: 'openingHour', cascade: ['persist', 'remove'])]
