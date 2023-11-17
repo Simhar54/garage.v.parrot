@@ -21,7 +21,7 @@ class ContactType extends AbstractType
             'attr' => [
                 'class' => 'form-control mt-2',
                 'name' => 'lastname',
-                'id' => 'name',
+                'id' => 'lastname',
                 'oninput' => 'validateFields(this)'
             ],
             'constraints' => [
@@ -42,7 +42,7 @@ class ContactType extends AbstractType
             'attr' => [
                 'class' => 'form-control mt-2',
                 'name' => 'firstname',
-                'id' => 'name',
+                'id' => 'firstname',
                 'oninput' => 'validateFields(this)'
             ],
             'constraints' => [
@@ -63,7 +63,7 @@ class ContactType extends AbstractType
             'attr' => [
                 'class' => 'form-control mt-2',
                 'name' => 'phoneNumber',
-                'id' => 'name',
+                'id' => 'phoneNumber',
                 'oninput' => 'validateFields(this)'
             ],
             'constraints' => [
@@ -88,7 +88,7 @@ class ContactType extends AbstractType
             'attr' => [
                 'class' => 'form-control mt-2',
                 'name' => 'email',
-                'id' => 'name',
+                'id' => 'email',
                 'oninput' => 'validateFields(this)'
             ],
             'constraints' => [
@@ -106,7 +106,7 @@ class ContactType extends AbstractType
             'attr' => [
                 'class' => 'form-control mt-2',
                 'name' => 'subject',
-                'id' => 'name',
+                'id' => 'subject',
                 'oninput' => 'validateFields(this)'
             ],
             'constraints' => [
@@ -128,7 +128,7 @@ class ContactType extends AbstractType
             'attr' => [
                 'class' => 'form-control mt-2',
                 'name' => 'message',
-                'id' => 'name',
+                'id' => 'message',
                 'oninput' => 'validateFields(this)', 
                 'rows' => '5'
             ],

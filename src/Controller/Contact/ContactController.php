@@ -41,6 +41,7 @@ class ContactController extends AbstractController
                 return $this->redirectToRoute('app_contact');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'envoi de votre message');
+                return $this->redirectToRoute('app_contact');
             }
         } 
         return $this->render('contact/index.html.twig', [
