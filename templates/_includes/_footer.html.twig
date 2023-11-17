@@ -15,8 +15,8 @@
 			Téléphone : 01 23 45 67 89
 		</div>
     	<div class="col col-12 col-lg-3 text-center">
-    		<p>Nous <a href="#" class="gp_link">contacter</a></p>
-    		<p>Nos <a href="#" class="gp_link">CGU</a></p>
+    		<p>Nous <a href="{{path('app_contact')}}" class="gp_link">contacter</a></p>
+    		<p>Nos <a href="{{path('app_cgu')}}" class="gp_link">CGU</a></p>
 			{% if app.user %}
 				<p>Se <a href="{{path('app_logout')}}" class="gp_link">deconnecter</a></p>
 			{% else %}
