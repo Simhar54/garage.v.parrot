@@ -21,7 +21,6 @@
 
 .gp_card_text {
   white-space: pre-line;
-  cursor: pointer;
   padding-left: 1em;
   padding-right: 1em;
   max-height: 100px; 
