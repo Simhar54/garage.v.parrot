@@ -17,10 +17,10 @@ class EmailService
     public function contactEmail( $lastname, $firstname, $phoneNumber, $email, $subject, $message)
     {
         $emailSend = (new Email())
-            ->from("form_contact@garage.v.parrot.simar-digital.com")
-            ->to("contact@garage.v.parrot.simar-digital.com")
-            ->subject($subject)
-            ->text("Message de : " . $lastname . " " . $firstname . "\n" . "Téléphone : " . $phoneNumber ."\n" . "Email". $email."\n". "Message : " . $message);
+             ->from($_ENV['MAIL_FROM_ADDRESS'])
+             ->to($_ENV['MAIL_TO_ADDRESS'])
+             ->subject($subject)
+             ->text("Message de : " . $lastname . " " . $firstname . "\n" . "Téléphone : " . $phoneNumber ."\n" . "Email : " . $email."\n". "Message : " . $message);
 
         $this->mailer->send($emailSend);
 
