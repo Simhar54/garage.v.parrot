@@ -27,7 +27,10 @@ services:
 
     App\Service\GarageId:
         arguments:
-            $garageId: '%env(GARAGE_ID)%'
+            $garageName: '%env(GARAGE_NAME)%'
+            $entityManager: '@doctrine.orm.entity_manager'
+
+
 
 
     # add more service definitions when explicit configuration is needed
