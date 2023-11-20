@@ -4,6 +4,17 @@ const filterForm = document.getElementById("filterForm");
 fetch("/api/cars")
   .then((response) => response.json())
   .then((cars) => {
+    if (cars.length === 0) {
+      // If no car found, create Bootstrap alert
+      const alertDiv = document.createElement("div");
+      alertDiv.className = "alert alert-warning alert-dismissible fade show mt-3";
+      alertDiv.setAttribute("role", "alert");
+      alertDiv.innerHTML = `Il n'y a aucune voiture à vendre en ce moment. Veuillez réessayer plus tard."
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+      const alertContainer = document.getElementById("alertContainer");
+      alertContainer.appendChild(alertDiv);
+    }else{
     // Display cars
     const carList = document.getElementById("carCardContainer");
     cars.forEach((car) => {
@@ -17,7 +28,7 @@ fetch("/api/cars")
         car.image
       );
       carList.appendChild(cardCar);
-    });
+    }); }
   })
   .catch((error) => {
     // If error, create Bootstrap alert
