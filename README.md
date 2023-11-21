@@ -33,7 +33,7 @@ Se rendre dans le dossier où vous souhaitez installer le projet.
     ```GARAGE_NAME="Garage V Parrot"``
 
 6.  Installer les dépendances :</br>
-    ```composer install```
+    ```composer install```</br>
     Des erreurs vont apparaitre a la fin du chargement, c'est normal il faut finir les instructions.
 
 8.  Créer la base de données :</br>
