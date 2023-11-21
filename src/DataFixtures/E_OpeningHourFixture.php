@@ -29,8 +29,8 @@ class E_OpeningHourFixture extends Fixture
         $openingHour->setFridayClose(new \DateTime('12:00:00'));
         $openingHour->setSaturdayOpen(new \DateTime('08:00:00'));
         $openingHour->setSaturdayClose(new \DateTime('12:00:00'));
-        $openingHour->setSundayOpen(new \DateTime('08:00:00'));
-        $openingHour->setSundayClose(new \DateTime('12:00:00'));
+        $openingHour->setSundayOpen(new \DateTime('00:00:00'));
+        $openingHour->setSundayClose(new \DateTime('00:00:00'));
         $openingHour->setGarage($garage);
         $manager->persist($openingHour);
 
