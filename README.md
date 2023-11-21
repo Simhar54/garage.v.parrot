@@ -47,6 +47,10 @@ Se rendre dans le dossier où vous souhaitez installer le projet.
     ```symfony console cache:clear```
     pour vider le cache.
 
+12. Execute la commande :</br>
+    ```symfony console assets:install```
+    pour installer les assets.
+
 
 ## Configuration des Adresses E-mail
 
