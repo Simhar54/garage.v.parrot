@@ -23,22 +23,28 @@ Se rendre dans le dossier où vous souhaitez installer le projet.
     ```git clone git@github.com:Simhar54/garage.v.parrot.git ```</br>
 2.  Se rendre dans le dossier du projet :</br>
     ```cd garage.v.parrot```
-3.  Installer les dépendances :</br>
-    ```composer install```
-4.  Créer un fichier .env.local et y ajouter les informations de connexion à la base de données : </br>
+3.  Créer un fichier .env.local et y ajouter les informations de connexion à la base de données : </br>
     ```DATABASE_URL="mysql://user:password@host:port/database_name"```
-5.  Configurer le mailer dans le fichier .env.local avec vos identifiant : </br>
+4.  Configurer le mailer dans le fichier .env.local avec vos identifiant : </br>
     ```MAILER_DSN=smtp://USERNAME:PASSWORD@HOST:PORT?encryption=ENCRYPTION_METHOD```</br>
     Si vous n'avez pas d'adresse mail lire a la fin du fichier README.md pour créer un mail de test.
-6.  Créer la base de données :</br>
-    ```symfony console doctrine:database:create```
-7.  Créer les tables :</br>
-    ```symfony console doctrine:migrations:migrate```
-8.  Charger les données de test :</br>
-    ```symfony console doctrine:fixtures:load```
-9.  A la fin du fichier .env.local ajouter les lignes: </br>
+5.  A la fin du fichier .env.local ajouter les lignes: </br>
     ```### Nom du garage ###  ```	</br>
-    ```GARAGE_NAME="Garage V Parrot"```
+    ```GARAGE_NAME="Garage V Parrot"``
+
+6.  Installer les dépendances :</br>
+    ```composer install```
+
+7.  Créer la base de données :</br>
+    ```symfony console doctrine:database:create```
+8.  Créer les tables :</br>
+    ```symfony console doctrine:migrations:migrate```
+9.  Charger les données de test :</br>
+    ```symfony console doctrine:fixtures:load```
+`
+10. Execute la commande :</br>
+    ```symfony console cache:clear```
+    pour vider le cache.
 
 
 ## Configuration des Adresses E-mail
