@@ -34,15 +34,16 @@ Se rendre dans le dossier où vous souhaitez installer le projet.
 
 6.  Installer les dépendances :</br>
     ```composer install```
+    Des erreurs vont apparaitre a la fin du chargement, c'est normal il faut finir les instructions.
 
-7.  Créer la base de données :</br>
+8.  Créer la base de données :</br>
     ```symfony console doctrine:database:create```
-8.  Créer les tables :</br>
+9.  Créer les tables :</br>
     ```symfony console doctrine:migrations:migrate```
-9.  Charger les données de test :</br>
+10.  Charger les données de test :</br>
     ```symfony console doctrine:fixtures:load```
 `
-10. Execute la commande :</br>
+11. Execute la commande :</br>
     ```symfony console cache:clear```
     pour vider le cache.
 
